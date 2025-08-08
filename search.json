@@ -2,9 +2,51 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "stats",
+    "title": "Home",
     "section": "",
-    "text": "Post With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nAug 9, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nAug 6, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+    "text": "Kernel Density Estimatation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCentral Limit Theorem\n\n\n\ncode\n\nanalysis\n\nstats\n\n\n\n\n\n\n\n\n\nAug 9, 2025\n\n\nPeter Lahanas\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nadmin\n\n\n\n\n\n\n\n\n\nAug 6, 2025\n\n\nPeter Lahanas\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/clt/clt.html",
+    "href": "posts/clt/clt.html",
+    "title": "Central Limit Theorem",
+    "section": "",
+    "text": "Why do so many things seem to follow some sort of a normal distribution? Well, one possible explanation is the Central Limit Theorem.\n“The sampling distribution of a sample mean is approximately normal if the sample size is large enough.”\nSo what does this mean? If we calculate a sample mean over a distribution (regardless of the distribution), the distribution of sample means will approach a normal distribution.\n\nimport numpy as np\nimport seaborn as sns\n\n# Generate some sample means from a variety of distribution\n\ndef generate_sample_mean_uniform(num_samples:int =100) -&gt; np.ndarray:\n    return np.random.randint(1,15, size=num_samples).mean()\n\ndef generate_sample_means_uniform(samples: int = 100) -&gt; np.ndarray:\n    return np.array([generate_sample_mean_uniform() for _ in range(samples)])\n\n\nsns.histplot(generate_sample_means_uniform())\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This is a place for me to learn more about statistics and share my findings."
+  },
+  {
+    "objectID": "posts/kde/kernel_density_estimator.html",
+    "href": "posts/kde/kernel_density_estimator.html",
+    "title": "Kernel Density Estimatation",
+    "section": "",
+    "text": "KDEs help us answer the question: how do we estimate the probability density function (PDF) based on observed data?\nThis method is non-parametric, meaning we do not make an assumption about the underlying distribution.\nLet’s start with histograms and further refine our model.\n\n\nHistograms are a good starting point for density estimation as they are relatively easy to make.\nTo construct a histogram, we divide the observed data interval into adjacent, consecutive groups called ‘bins’.\nThese are placed on the x-axis and the number of observations that fall into each bin give us the y values.\n\n\n\n\n\n\n\n\n\n\n\n\n\nIs a composite function made up of one kind of building block referred to as a kernel function.\nThe kernel function is evaluated for each datapoint separately, and these partial results are summed to form the KDE\n\n\n\nSimplest example. We have one data point, take x = 0.\nThe most logical approach \\(exp(-x^2)\\)\nLooks something like this…\n\n[INSERT GRAPH HERE]\nRescale as area under PDF should be 1.\n\n\n\n\\(K(x) = 1/sqrt(2pi) exp[-(x^2)/2]\\)\nThis is our Kernel function and is a valid PDF. Effectively a Gaussian distribution with mean 0 and unit variance\nThis is our Gaussian kernel.\nIf we expand it to N datapoints and scale back our PDF, we get a smoother fit of our PDF.\nTODO:\n\nShow a script deriving from first principles using a Guassian Kernel function (like in the towardsdatascience paper)\nUse seaborn as a more polished/modern/faster way of doing it.\nLook into scikit learn and the KernelDensity function that is has. (you can choose different kernels)\n\n\n\n\n\nhttps://www.mvstat.net/tduong/research/seminars/seminar-2001-05/\nhttps://towardsdatascience.com/kernel-density-estimation-explained-step-by-step-7cc5b5bc4517/\nhttps://chriskhanhtran.github.io/_posts/2020-01-13-portfolio-tutorial/\nhttps://quarto.org/"
+  },
+  {
+    "objectID": "posts/kde/kernel_density_estimator.html#histograms",
+    "href": "posts/kde/kernel_density_estimator.html#histograms",
+    "title": "Kernel Density Estimatation",
+    "section": "",
+    "text": "Histograms are a good starting point for density estimation as they are relatively easy to make.\nTo construct a histogram, we divide the observed data interval into adjacent, consecutive groups called ‘bins’.\nThese are placed on the x-axis and the number of observations that fall into each bin give us the y values."
+  },
+  {
+    "objectID": "posts/kde/kernel_density_estimator.html#kde",
+    "href": "posts/kde/kernel_density_estimator.html#kde",
+    "title": "Kernel Density Estimatation",
+    "section": "",
+    "text": "Is a composite function made up of one kind of building block referred to as a kernel function.\nThe kernel function is evaluated for each datapoint separately, and these partial results are summed to form the KDE\n\n\n\nSimplest example. We have one data point, take x = 0.\nThe most logical approach \\(exp(-x^2)\\)\nLooks something like this…\n\n[INSERT GRAPH HERE]\nRescale as area under PDF should be 1.\n\n\n\n\\(K(x) = 1/sqrt(2pi) exp[-(x^2)/2]\\)\nThis is our Kernel function and is a valid PDF. Effectively a Gaussian distribution with mean 0 and unit variance\nThis is our Gaussian kernel.\nIf we expand it to N datapoints and scale back our PDF, we get a smoother fit of our PDF.\nTODO:\n\nShow a script deriving from first principles using a Guassian Kernel function (like in the towardsdatascience paper)\nUse seaborn as a more polished/modern/faster way of doing it.\nLook into scikit learn and the KernelDensity function that is has. (you can choose different kernels)"
+  },
+  {
+    "objectID": "posts/kde/kernel_density_estimator.html#useful-reading",
+    "href": "posts/kde/kernel_density_estimator.html#useful-reading",
+    "title": "Kernel Density Estimatation",
+    "section": "",
+    "text": "https://www.mvstat.net/tduong/research/seminars/seminar-2001-05/\nhttps://towardsdatascience.com/kernel-density-estimation-explained-step-by-step-7cc5b5bc4517/\nhttps://chriskhanhtran.github.io/_posts/2020-01-13-portfolio-tutorial/\nhttps://quarto.org/"
   },
   {
     "objectID": "posts/welcome/index.html",
@@ -12,47 +54,5 @@
     "title": "Welcome To My Blog",
     "section": "",
     "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Statistics Blog",
-    "section": "",
-    "text": "About this blog"
-  },
-  {
-    "objectID": "kernel_density_estimator.html",
-    "href": "kernel_density_estimator.html",
-    "title": "Kernel Density Estimators (KDE)",
-    "section": "",
-    "text": "Is a composite function made up of one kind of building block referred to as a kernel function.\nThe kernel function is evaluated for each datapoint separately, and these partial results are summed to form the KDE\n\n\n\nSimplest example. We have one data point, take x = 0.\nThe most logical approach \\(exp(-x^2)\\)\nLooks something like this…\n\n[INSERT GRAPH HERE]\nRescale as area under PDF should be 1.\n\n\n\n\\(K(x) = 1/sqrt(2pi) exp[-(x^2)/2]\\)\nThis is our Kernel function and is a valid PDF. Effectively a Gaussian distribution with mean 0 and unit variance\nThis is our Gaussian kernel.\nIf we expand it to N datapoints and scale back our PDF, we get a smoother fit of our PDF.\nTODO:\n\nShow a script deriving from first principles using a Guassian Kernel function (like in the towardsdatascience paper)\nUse seaborn as a more polished/modern/faster way of doing it.\nLook into scikit learn and the KernelDensity function that is has. (you can choose different kernels)\n\n\n\n\n\nhttps://towardsdatascience.com/kernel-density-estimation-explained-step-by-step-7cc5b5bc4517/\nhttps://chriskhanhtran.github.io/_posts/2020-01-13-portfolio-tutorial/"
-  },
-  {
-    "objectID": "kernel_density_estimator.html#kde",
-    "href": "kernel_density_estimator.html#kde",
-    "title": "Kernel Density Estimators (KDE)",
-    "section": "",
-    "text": "Is a composite function made up of one kind of building block referred to as a kernel function.\nThe kernel function is evaluated for each datapoint separately, and these partial results are summed to form the KDE\n\n\n\nSimplest example. We have one data point, take x = 0.\nThe most logical approach \\(exp(-x^2)\\)\nLooks something like this…\n\n[INSERT GRAPH HERE]\nRescale as area under PDF should be 1.\n\n\n\n\\(K(x) = 1/sqrt(2pi) exp[-(x^2)/2]\\)\nThis is our Kernel function and is a valid PDF. Effectively a Gaussian distribution with mean 0 and unit variance\nThis is our Gaussian kernel.\nIf we expand it to N datapoints and scale back our PDF, we get a smoother fit of our PDF.\nTODO:\n\nShow a script deriving from first principles using a Guassian Kernel function (like in the towardsdatascience paper)\nUse seaborn as a more polished/modern/faster way of doing it.\nLook into scikit learn and the KernelDensity function that is has. (you can choose different kernels)"
-  },
-  {
-    "objectID": "kernel_density_estimator.html#useful-reading",
-    "href": "kernel_density_estimator.html#useful-reading",
-    "title": "Kernel Density Estimators (KDE)",
-    "section": "",
-    "text": "https://towardsdatascience.com/kernel-density-estimation-explained-step-by-step-7cc5b5bc4517/\nhttps://chriskhanhtran.github.io/_posts/2020-01-13-portfolio-tutorial/"
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code."
-  },
-  {
-    "objectID": "clt.html",
-    "href": "clt.html",
-    "title": "Central Limit Theorem",
-    "section": "",
-    "text": "Why do so many things seem to follow some sort of a normal distribution? Well, one possible explanation is the Central Limit Theorem.\nCentral Limit Theorem:\n“The sampling distribution of a sample mean is approximately normal if the sample size is large enough.”\nSo what does this mean? If we calculate a sample mean over a distribution (regardless of the distribution), the distribution of sample means will approach a normal distribution.\n\nimport numpy as np\nimport seaborn as sns\n\n# Generate some sample means from a variety of distribution\n\ndef generate_sample_mean_uniform(num_samples:int =100) -&gt; np.ndarray:\n    return np.random.randint(1,15, size=num_samples).mean()\n\ndef generate_sample_means_uniform(samples: int = 100) -&gt; np.ndarray:\n    return np.array([generate_sample_mean_uniform() for _ in range(samples)])\n\n\nsns.histplot(generate_sample_means_uniform())"
   }
 ]

@@ -2,26 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://p-lahanas.github.io/stats/index.html</loc>
-    <lastmod>2025-08-08T22:13:20.796Z</lastmod>
+    <lastmod>2025-08-08T22:53:25.119Z</lastmod>
   </url>
   <url>
-    <loc>https://p-lahanas.github.io/stats/posts/welcome/index.html</loc>
-    <lastmod>2025-08-08T22:13:20.797Z</lastmod>
+    <loc>https://p-lahanas.github.io/stats/posts/clt/clt.html</loc>
+    <lastmod>2025-08-08T22:41:51.887Z</lastmod>
   </url>
   <url>
     <loc>https://p-lahanas.github.io/stats/about.html</loc>
-    <lastmod>2025-08-08T22:13:20.787Z</lastmod>
+    <lastmod>2025-08-08T22:53:03.994Z</lastmod>
   </url>
   <url>
-    <loc>https://p-lahanas.github.io/stats/kernel_density_estimator.html</loc>
-    <lastmod>2025-08-08T22:13:20.796Z</lastmod>
+    <loc>https://p-lahanas.github.io/stats/posts/kde/kernel_density_estimator.html</loc>
+    <lastmod>2025-08-08T22:55:53.158Z</lastmod>
   </url>
   <url>
-    <loc>https://p-lahanas.github.io/stats/posts/post-with-code/index.html</loc>
-    <lastmod>2025-08-08T22:13:20.796Z</lastmod>
-  </url>
-  <url>
-    <loc>https://p-lahanas.github.io/stats/clt.html</loc>
-    <lastmod>2025-08-08T22:13:20.796Z</lastmod>
+    <loc>https://p-lahanas.github.io/stats/posts/welcome/index.html</loc>
+    <lastmod>2025-08-08T22:54:51.584Z</lastmod>
   </url>
 </urlset>

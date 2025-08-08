@@ -2,7 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/post-with-code/index.html",
+      "/posts/kde/kernel_density_estimator.html",
+      "/posts/clt/clt.html",
       "/posts/welcome/index.html"
     ]
   }
