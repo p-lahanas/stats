@@ -1,8 +1,8 @@
 ---
 title: "Welcome To My Blog"
-author: "Tristan O'Malley"
+author: "Peter Lahanas"
 date: "2025-08-06"
-categories: [news]
+categories: [admin]
 ---
 
 This is the first post in a Quarto blog. Welcome!

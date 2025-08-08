@@ -2,20 +2,15 @@ project:
   type: website
 
 website:
-  title: "stats"
+  title: "Statistics Blog"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/p-lahanas
 format:
   html:
     theme:
-      - cosmo
+      - lux
       - brand
     css: styles.css
-
-
-
