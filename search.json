@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Kernel Density Estimatation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCentral Limit Theorem\n\n\n\ncode\n\nanalysis\n\nstats\n\n\n\n\n\n\n\n\n\nAug 9, 2025\n\n\nPeter Lahanas\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nadmin\n\n\n\n\n\n\n\n\n\nAug 6, 2025\n\n\nPeter Lahanas\n\n\n\n\n\nNo matching items"
+    "text": "Kernel Density Estimatation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCentral Limit Theorem (CLT)\n\n\n\nwrite-up\n\ntheory\n\n\n\n\n\n\n\n\n\nAug 9, 2025\n\n\nPeter Lahanas\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nadmin\n\n\n\n\n\n\n\n\n\nAug 6, 2025\n\n\nPeter Lahanas\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/clt/clt.html",
     "href": "posts/clt/clt.html",
-    "title": "Central Limit Theorem",
+    "title": "Central Limit Theorem (CLT)",
     "section": "",
-    "text": "Why do so many things seem to follow some sort of a normal distribution? Well, one possible explanation is the Central Limit Theorem.\n“The sampling distribution of a sample mean is approximately normal if the sample size is large enough.”\nSo what does this mean? If we calculate a sample mean over a distribution (regardless of the distribution), the distribution of sample means will approach a normal distribution.\n\nimport numpy as np\nimport seaborn as sns\n\n# Generate some sample means from a variety of distribution\n\ndef generate_sample_mean_uniform(num_samples:int =100) -&gt; np.ndarray:\n    return np.random.randint(1,15, size=num_samples).mean()\n\ndef generate_sample_means_uniform(samples: int = 100) -&gt; np.ndarray:\n    return np.array([generate_sample_mean_uniform() for _ in range(samples)])\n\n\nsns.histplot(generate_sample_means_uniform())\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
+    "text": "Why do so many things seem to follow some sort of a normal distribution? Well, one possible explanation is the central limit theorem.\n\nFormally:\nLet’s define a set of independent random variables \\(\\{X_{1},X_{2},..., X_{n}\\}\\) which are identically distributed, have a mean \\(\\mu=0\\) and variance \\(\\sigma^2=1\\). If we define \\(\\bar X_n = \\frac{1}{n} \\sum_{i=0}^{n} X_i\\), we can say that the normalised mean \\(\\sqrt{n}(\\bar X_n - \\mu)\\) approaches the normal distribution while n approaches infinity.\n\\[\\sqrt{n}(\\bar X_n - \\mu) \\xrightarrow{d} \\mathcal{N}(0,\\sigma^2)\\]\n\n\nMore simply:\nThe sampling distribution of a sample mean is approximately normal if the sample size is large enough. So, if we calculate many sample means over a distribution (regardless of the distribution), the distribution of the sample means will be somewhat normally distributed.\nLet’s give it a try:\n\nimport numpy as np\nimport seaborn as sns\n\n# Generate a sample mean from a uniform distribution\ndef generate_sample_mean_uniform(num_samples:int =100) -&gt; np.ndarray:\n    return np.random.randint(1,20, size=num_samples).mean()\n\n# Generate multiple sample means from our uniform distribution\ndef generate_sample_means_uniform(samples: int = 500) -&gt; np.ndarray:\n    return np.array([generate_sample_mean_uniform() for _ in range(samples)])\n\n\nsns.histplot(generate_sample_means_uniform())\n\n\n\n\n\n\n\nFigure 1: The distribution of sample means from an underlying uniform distribution"
   },
   {
     "objectID": "about.html",

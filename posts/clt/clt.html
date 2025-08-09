@@ -9,7 +9,7 @@
 <meta name="author" content="Peter Lahanas">
 <meta name="dcterms.date" content="2025-08-09">
 
-<title>Central Limit Theorem – Statistics Blog</title>
+<title>Central Limit Theorem (CLT) – Statistics Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,6 +105,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -146,11 +175,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Central Limit Theorem</h1>
+      <h1 class="title">Central Limit Theorem (CLT)</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">code</div>
-                <div class="quarto-category">analysis</div>
-                <div class="quarto-category">stats</div>
+                <div class="quarto-category">write-up</div>
+                <div class="quarto-category">theory</div>
               </div>
                   </div>
   </div>
@@ -187,19 +215,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Why do so many things seem to follow some sort of a normal distribution? Well, one possible explanation is the Central Limit Theorem.</p>
-<p>“The sampling distribution of a sample mean is approximately normal if the sample size is large enough.”</p>
-<p>So what does this mean? If we calculate a sample mean over a distribution (regardless of the distribution), the distribution of sample means will approach a normal distribution.</p>
-<div id="cell-fig-polar" class="cell" data-execution_count="6">
+<p>Why do so many things seem to follow some sort of a normal distribution? Well, one possible explanation is the central limit theorem.</p>
+<section id="formally" class="level5">
+<h5 class="anchored" data-anchor-id="formally">Formally:</h5>
+<p>Let’s define a set of independent random variables <span class="math inline">\(\{X_{1},X_{2},..., X_{n}\}\)</span> which are identically distributed, have a mean <span class="math inline">\(\mu=0\)</span> and variance <span class="math inline">\(\sigma^2=1\)</span>. If we define <span class="math inline">\(\bar X_n = \frac{1}{n} \sum_{i=0}^{n} X_i\)</span>, we can say that the normalised mean <span class="math inline">\(\sqrt{n}(\bar X_n - \mu)\)</span> approaches the normal distribution while n approaches infinity.</p>
+<p><span class="math display">\[\sqrt{n}(\bar X_n - \mu) \xrightarrow{d} \mathcal{N}(0,\sigma^2)\]</span></p>
+</section>
+<section id="more-simply" class="level5">
+<h5 class="anchored" data-anchor-id="more-simply">More simply:</h5>
+<p>The sampling distribution of a sample mean is approximately normal if the sample size is large enough. So, if we calculate many sample means over a distribution (regardless of the distribution), the distribution of the sample means will be somewhat normally distributed.</p>
+<p>Let’s give it a try:</p>
+<div id="cell-fig-polar" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate some sample means from a variety of distribution</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_sample_mean_uniform(num_samples:<span class="bu">int</span> <span class="op">=</span><span class="dv">100</span>) <span class="op">-&gt;</span> np.ndarray:</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.random.randint(<span class="dv">1</span>,<span class="dv">15</span>, size<span class="op">=</span>num_samples).mean()</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_sample_means_uniform(samples: <span class="bu">int</span> <span class="op">=</span> <span class="dv">100</span>) <span class="op">-&gt;</span> np.ndarray:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a sample mean from a uniform distribution</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_sample_mean_uniform(num_samples:<span class="bu">int</span> <span class="op">=</span><span class="dv">100</span>) <span class="op">-&gt;</span> np.ndarray:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.random.randint(<span class="dv">1</span>,<span class="dv">20</span>, size<span class="op">=</span>num_samples).mean()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate multiple sample means from our uniform distribution</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_sample_means_uniform(samples: <span class="bu">int</span> <span class="op">=</span> <span class="dv">500</span>) <span class="op">-&gt;</span> np.ndarray:</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array([generate_sample_mean_uniform() <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(samples)])</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
@@ -211,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="clt_files/figure-html/fig-polar-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: A line plot on a polar axis
+Figure&nbsp;1: The distribution of sample means from an underlying uniform distribution
 </figcaption>
 </figure>
 </div>
@@ -219,6 +254,7 @@ Figure&nbsp;1: A line plot on a polar axis
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
